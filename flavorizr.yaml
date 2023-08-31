@@ -1,0 +1,46 @@
+flavorizr:
+  instructions:
+    - assets:download
+    - assets:extract
+
+    #    Android
+    - android:androidManifest
+    - android:buildGradle
+    - android:dummyAssets
+    - android:icons
+
+    #     iOS
+    - ios:xcconfig
+    - ios:buildTargets
+    - ios:schema
+    - ios:dummyAssets
+    - ios:icons
+    - ios:plist
+
+    #     Google
+    - google:firebase
+
+    #     Cleanup
+    - assets:clean
+
+    #     IDE
+    - ide:config
+flavors:
+  prod:
+    app:
+      name: "Joke Generator"
+
+    android:
+      applicationId: "com.personal.jokegenerator"
+
+    ios:
+      bundleId: "com.personal.jokegenerator"
+
+  dev:
+    app:
+      name: "Joke Generator Dev"
+
+    android:
+      applicationId: "com.personal.jokegenerator.dev"
+    ios:
+      bundleId: "com.personal.jokegenerator.dev"
