@@ -1,18 +1,21 @@
 part of 'home_cubit.dart';
 
 @freezed
-class HomeState with _$HomeState{
+class HomeState with _$HomeState {
   const factory HomeState({
     @Default(HomeStatus.initial) HomeStatus status,
-    String? postDescription,
+    List<String>? jokeCategory,
+    String? searchInput,
+    @Default([]) List<String> jokeBlackList,
     String? error,
   }) = _HomeState;
 
   factory HomeState.initial() => const HomeState();
 }
 
-enum HomeStatus{
+enum HomeStatus {
   initial,
   loading,
   success,
+  error,
 }

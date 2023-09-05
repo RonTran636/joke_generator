@@ -17,7 +17,9 @@ final _privateConstructorUsedError = UnsupportedError(
 /// @nodoc
 mixin _$HomeState {
   HomeStatus get status => throw _privateConstructorUsedError;
-  String? get postDescription => throw _privateConstructorUsedError;
+  List<String>? get jokeCategory => throw _privateConstructorUsedError;
+  String? get searchInput => throw _privateConstructorUsedError;
+  List<String> get jokeBlackList => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -30,7 +32,12 @@ abstract class $HomeStateCopyWith<$Res> {
   factory $HomeStateCopyWith(HomeState value, $Res Function(HomeState) then) =
       _$HomeStateCopyWithImpl<$Res, HomeState>;
   @useResult
-  $Res call({HomeStatus status, String? postDescription, String? error});
+  $Res call(
+      {HomeStatus status,
+      List<String>? jokeCategory,
+      String? searchInput,
+      List<String> jokeBlackList,
+      String? error});
 }
 
 /// @nodoc
@@ -47,7 +54,9 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
   @override
   $Res call({
     Object? status = null,
-    Object? postDescription = freezed,
+    Object? jokeCategory = freezed,
+    Object? searchInput = freezed,
+    Object? jokeBlackList = null,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -55,10 +64,18 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as HomeStatus,
-      postDescription: freezed == postDescription
-          ? _value.postDescription
-          : postDescription // ignore: cast_nullable_to_non_nullable
+      jokeCategory: freezed == jokeCategory
+          ? _value.jokeCategory
+          : jokeCategory // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      searchInput: freezed == searchInput
+          ? _value.searchInput
+          : searchInput // ignore: cast_nullable_to_non_nullable
               as String?,
+      jokeBlackList: null == jokeBlackList
+          ? _value.jokeBlackList
+          : jokeBlackList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -74,7 +91,12 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       __$$_HomeStateCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({HomeStatus status, String? postDescription, String? error});
+  $Res call(
+      {HomeStatus status,
+      List<String>? jokeCategory,
+      String? searchInput,
+      List<String> jokeBlackList,
+      String? error});
 }
 
 /// @nodoc
@@ -89,7 +111,9 @@ class __$$_HomeStateCopyWithImpl<$Res>
   @override
   $Res call({
     Object? status = null,
-    Object? postDescription = freezed,
+    Object? jokeCategory = freezed,
+    Object? searchInput = freezed,
+    Object? jokeBlackList = null,
     Object? error = freezed,
   }) {
     return _then(_$_HomeState(
@@ -97,10 +121,18 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value.status
           : status // ignore: cast_nullable_to_non_nullable
               as HomeStatus,
-      postDescription: freezed == postDescription
-          ? _value.postDescription
-          : postDescription // ignore: cast_nullable_to_non_nullable
+      jokeCategory: freezed == jokeCategory
+          ? _value._jokeCategory
+          : jokeCategory // ignore: cast_nullable_to_non_nullable
+              as List<String>?,
+      searchInput: freezed == searchInput
+          ? _value.searchInput
+          : searchInput // ignore: cast_nullable_to_non_nullable
               as String?,
+      jokeBlackList: null == jokeBlackList
+          ? _value._jokeBlackList
+          : jokeBlackList // ignore: cast_nullable_to_non_nullable
+              as List<String>,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -113,19 +145,44 @@ class __$$_HomeStateCopyWithImpl<$Res>
 
 class _$_HomeState implements _HomeState {
   const _$_HomeState(
-      {this.status = HomeStatus.initial, this.postDescription, this.error});
+      {this.status = HomeStatus.initial,
+      final List<String>? jokeCategory,
+      this.searchInput,
+      final List<String> jokeBlackList = const [],
+      this.error})
+      : _jokeCategory = jokeCategory,
+        _jokeBlackList = jokeBlackList;
 
   @override
   @JsonKey()
   final HomeStatus status;
+  final List<String>? _jokeCategory;
   @override
-  final String? postDescription;
+  List<String>? get jokeCategory {
+    final value = _jokeCategory;
+    if (value == null) return null;
+    if (_jokeCategory is EqualUnmodifiableListView) return _jokeCategory;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(value);
+  }
+
+  @override
+  final String? searchInput;
+  final List<String> _jokeBlackList;
+  @override
+  @JsonKey()
+  List<String> get jokeBlackList {
+    if (_jokeBlackList is EqualUnmodifiableListView) return _jokeBlackList;
+    // ignore: implicit_dynamic_type
+    return EqualUnmodifiableListView(_jokeBlackList);
+  }
+
   @override
   final String? error;
 
   @override
   String toString() {
-    return 'HomeState(status: $status, postDescription: $postDescription, error: $error)';
+    return 'HomeState(status: $status, jokeCategory: $jokeCategory, searchInput: $searchInput, jokeBlackList: $jokeBlackList, error: $error)';
   }
 
   @override
@@ -134,13 +191,23 @@ class _$_HomeState implements _HomeState {
         (other.runtimeType == runtimeType &&
             other is _$_HomeState &&
             (identical(other.status, status) || other.status == status) &&
-            (identical(other.postDescription, postDescription) ||
-                other.postDescription == postDescription) &&
+            const DeepCollectionEquality()
+                .equals(other._jokeCategory, _jokeCategory) &&
+            (identical(other.searchInput, searchInput) ||
+                other.searchInput == searchInput) &&
+            const DeepCollectionEquality()
+                .equals(other._jokeBlackList, _jokeBlackList) &&
             (identical(other.error, error) || other.error == error));
   }
 
   @override
-  int get hashCode => Object.hash(runtimeType, status, postDescription, error);
+  int get hashCode => Object.hash(
+      runtimeType,
+      status,
+      const DeepCollectionEquality().hash(_jokeCategory),
+      searchInput,
+      const DeepCollectionEquality().hash(_jokeBlackList),
+      error);
 
   @JsonKey(ignore: true)
   @override
@@ -152,13 +219,19 @@ class _$_HomeState implements _HomeState {
 abstract class _HomeState implements HomeState {
   const factory _HomeState(
       {final HomeStatus status,
-      final String? postDescription,
+      final List<String>? jokeCategory,
+      final String? searchInput,
+      final List<String> jokeBlackList,
       final String? error}) = _$_HomeState;
 
   @override
   HomeStatus get status;
   @override
-  String? get postDescription;
+  List<String>? get jokeCategory;
+  @override
+  String? get searchInput;
+  @override
+  List<String> get jokeBlackList;
   @override
   String? get error;
   @override

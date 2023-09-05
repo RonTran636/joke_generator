@@ -5,14 +5,12 @@ class DropdownWidget extends StatelessWidget {
   const DropdownWidget({
     Key? key,
     required this.label,
-    required this.hint,
     required this.listItem,
     required this.onValueChange,
     this.selectedValue,
   }) : super(key: key);
 
   final String label;
-  final String hint;
   final List<String> listItem;
   final String? selectedValue;
   final ValueChanged<String?> onValueChange;
