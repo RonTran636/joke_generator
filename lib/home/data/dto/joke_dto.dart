@@ -16,15 +16,14 @@ String jokeDtoToJson(JokeDto data) => json.encode(data.toJson());
 class JokeDto with _$JokeDto {
   const factory JokeDto({
     required bool error,
-    required String setup,
-    required String delivery,
-    required int id,
+    String? joke,
+    int? id,
     String? category,
     String? type,
     Flags? flags,
-
     bool? safe,
     String? lang,
+    String? message,
   }) = _JokeDto;
 
   factory JokeDto.fromJson(Map<String, dynamic> json) => _$JokeDtoFromJson(json);

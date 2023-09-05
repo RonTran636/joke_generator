@@ -7,6 +7,7 @@ class HomeState with _$HomeState {
     List<String>? jokeCategory,
     String? searchInput,
     @Default([]) List<String> jokeBlackList,
+    JokeDto? jokeDto,
     String? error,
   }) = _HomeState;
 

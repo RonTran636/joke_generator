@@ -8,9 +8,8 @@ part of 'joke_dto.dart';
 
 _$_JokeDto _$$_JokeDtoFromJson(Map<String, dynamic> json) => _$_JokeDto(
       error: json['error'] as bool,
-      setup: json['setup'] as String,
-      delivery: json['delivery'] as String,
-      id: json['id'] as int,
+      joke: json['joke'] as String?,
+      id: json['id'] as int?,
       category: json['category'] as String?,
       type: json['type'] as String?,
       flags: json['flags'] == null
@@ -18,19 +17,20 @@ _$_JokeDto _$$_JokeDtoFromJson(Map<String, dynamic> json) => _$_JokeDto(
           : Flags.fromJson(json['flags'] as Map<String, dynamic>),
       safe: json['safe'] as bool?,
       lang: json['lang'] as String?,
+      message: json['message'] as String?,
     );
 
 Map<String, dynamic> _$$_JokeDtoToJson(_$_JokeDto instance) =>
     <String, dynamic>{
       'error': instance.error,
-      'setup': instance.setup,
-      'delivery': instance.delivery,
+      'joke': instance.joke,
       'id': instance.id,
       'category': instance.category,
       'type': instance.type,
       'flags': instance.flags,
       'safe': instance.safe,
       'lang': instance.lang,
+      'message': instance.message,
     };
 
 _$_Flags _$$_FlagsFromJson(Map<String, dynamic> json) => _$_Flags(

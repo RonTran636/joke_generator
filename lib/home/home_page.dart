@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:joke_api/home/bloc/home_cubit.dart';
 import 'package:joke_api/home/widgets/dropdown_widget.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -9,8 +10,16 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final homeCubit = context.read<HomeCubit>();
-    return BlocBuilder<HomeCubit, HomeState>(
+    return BlocConsumer<HomeCubit, HomeState>(
+      listener: (context, state) {
+        if (state.status == HomeStatus.loading) {
+          EasyLoading.show();
+        } else {
+          EasyLoading.dismiss();
+        }
+      },
       builder: (context, state) {
+        print("state: ${state.status}");
         return Scaffold(
           backgroundColor: Colors.black,
           body: SafeArea(
@@ -116,7 +125,7 @@ class HomePage extends StatelessWidget {
                         children: [
                           Checkbox(
                             value: homeCubit.state.jokeBlackList
-                                    .contains(homeCubit.jokeBlackList[index]),
+                                .contains(homeCubit.jokeBlackList[index]),
                             onChanged: (isSelected) => homeCubit.onBlackListSelect(
                               homeCubit.jokeBlackList[index],
                               isSelected!,
@@ -154,7 +163,54 @@ class HomePage extends StatelessWidget {
                         ),
                       ),
                     ),
-                  )
+                  ),
+                  const SizedBox(height: 24),
+                  Visibility(
+                    visible: state.jokeDto != null,
+                    child: state.jokeDto?.error ?? false
+                        ? Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Error:',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                state.jokeDto?.message ?? '',
+                                style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ],
+                          )
+                        : Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              const Text(
+                                'Here is your joke: ',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                              const SizedBox(height: 8),
+                              Text(
+                                state.jokeDto!.joke!,
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.w700,
+                                ),
+                              ),
+                            ],
+                          ),
+                  ),
                 ],
               ),
             ),

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_easyloading/flutter_easyloading.dart';
 import 'package:joke_api/api/api_client.dart';
 import 'package:joke_api/home/data/repository/home_remote_repository.dart';
 import 'package:joke_api/home/data/repository/home_repository.dart';
@@ -19,6 +20,7 @@ class App extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
+      builder: EasyLoading.init(),
       home: RepositoryProvider<HomeRepository>(
         create: (context) => HomeRemoteRepository(ApiClient()),
         child: BlocProvider(

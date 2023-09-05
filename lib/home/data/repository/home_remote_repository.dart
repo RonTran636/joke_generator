@@ -16,6 +16,7 @@ class HomeRemoteRepository implements HomeRepository {
     String? searchInput,
   }) async {
     String mCategory = '';
+    String blackList = '';
     if (jokeCategory == null) {
       mCategory = 'Any';
     } else {
@@ -23,15 +24,24 @@ class HomeRemoteRepository implements HomeRepository {
         mCategory += category != jokeCategory.last ? '$category,' : category;
       }
     }
-    print('mCategory $mCategory');
-    final response = _api.get(
+    if (jokeBlackList != null) {
+      for (var item in jokeBlackList) {
+        blackList += item != jokeBlackList.last ? '$item,' : item;
+      }
+    }
+    final response = await _api.get(
       'joke/$mCategory',
       queryParameters: {
         'type': 'single',
-        'blacklistFlags': '',
+        'blacklistFlags': blackList.isNotEmpty ? blackList : null,
         'contains': searchInput,
       }..removeWhere((key, value) => value == null),
     );
-    return Left(ApiFailure.connectivityError());
+
+   if (response.statusCode == 200){
+     print('data: ${response.data}');
+     return Right(JokeDto.fromJson(response.data));
+   }
+    return const Left(ApiFailure.connectivityError());
   }
 }

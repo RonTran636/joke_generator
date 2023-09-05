@@ -21,14 +21,14 @@ JokeDto _$JokeDtoFromJson(Map<String, dynamic> json) {
 /// @nodoc
 mixin _$JokeDto {
   bool get error => throw _privateConstructorUsedError;
-  String get setup => throw _privateConstructorUsedError;
-  String get delivery => throw _privateConstructorUsedError;
-  int get id => throw _privateConstructorUsedError;
+  String? get joke => throw _privateConstructorUsedError;
+  int? get id => throw _privateConstructorUsedError;
   String? get category => throw _privateConstructorUsedError;
   String? get type => throw _privateConstructorUsedError;
   Flags? get flags => throw _privateConstructorUsedError;
   bool? get safe => throw _privateConstructorUsedError;
   String? get lang => throw _privateConstructorUsedError;
+  String? get message => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -42,14 +42,14 @@ abstract class $JokeDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {bool error,
-      String setup,
-      String delivery,
-      int id,
+      String? joke,
+      int? id,
       String? category,
       String? type,
       Flags? flags,
       bool? safe,
-      String? lang});
+      String? lang,
+      String? message});
 
   $FlagsCopyWith<$Res>? get flags;
 }
@@ -68,32 +68,28 @@ class _$JokeDtoCopyWithImpl<$Res, $Val extends JokeDto>
   @override
   $Res call({
     Object? error = null,
-    Object? setup = null,
-    Object? delivery = null,
-    Object? id = null,
+    Object? joke = freezed,
+    Object? id = freezed,
     Object? category = freezed,
     Object? type = freezed,
     Object? flags = freezed,
     Object? safe = freezed,
     Object? lang = freezed,
+    Object? message = freezed,
   }) {
     return _then(_value.copyWith(
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
-      setup: null == setup
-          ? _value.setup
-          : setup // ignore: cast_nullable_to_non_nullable
-              as String,
-      delivery: null == delivery
-          ? _value.delivery
-          : delivery // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
+      joke: freezed == joke
+          ? _value.joke
+          : joke // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -113,6 +109,10 @@ class _$JokeDtoCopyWithImpl<$Res, $Val extends JokeDto>
       lang: freezed == lang
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
+              as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
   }
@@ -139,14 +139,14 @@ abstract class _$$_JokeDtoCopyWith<$Res> implements $JokeDtoCopyWith<$Res> {
   @useResult
   $Res call(
       {bool error,
-      String setup,
-      String delivery,
-      int id,
+      String? joke,
+      int? id,
       String? category,
       String? type,
       Flags? flags,
       bool? safe,
-      String? lang});
+      String? lang,
+      String? message});
 
   @override
   $FlagsCopyWith<$Res>? get flags;
@@ -163,32 +163,28 @@ class __$$_JokeDtoCopyWithImpl<$Res>
   @override
   $Res call({
     Object? error = null,
-    Object? setup = null,
-    Object? delivery = null,
-    Object? id = null,
+    Object? joke = freezed,
+    Object? id = freezed,
     Object? category = freezed,
     Object? type = freezed,
     Object? flags = freezed,
     Object? safe = freezed,
     Object? lang = freezed,
+    Object? message = freezed,
   }) {
     return _then(_$_JokeDto(
       error: null == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as bool,
-      setup: null == setup
-          ? _value.setup
-          : setup // ignore: cast_nullable_to_non_nullable
-              as String,
-      delivery: null == delivery
-          ? _value.delivery
-          : delivery // ignore: cast_nullable_to_non_nullable
-              as String,
-      id: null == id
+      joke: freezed == joke
+          ? _value.joke
+          : joke // ignore: cast_nullable_to_non_nullable
+              as String?,
+      id: freezed == id
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as int,
+              as int?,
       category: freezed == category
           ? _value.category
           : category // ignore: cast_nullable_to_non_nullable
@@ -209,6 +205,10 @@ class __$$_JokeDtoCopyWithImpl<$Res>
           ? _value.lang
           : lang // ignore: cast_nullable_to_non_nullable
               as String?,
+      message: freezed == message
+          ? _value.message
+          : message // ignore: cast_nullable_to_non_nullable
+              as String?,
     ));
   }
 }
@@ -218,14 +218,14 @@ class __$$_JokeDtoCopyWithImpl<$Res>
 class _$_JokeDto implements _JokeDto {
   const _$_JokeDto(
       {required this.error,
-      required this.setup,
-      required this.delivery,
-      required this.id,
+      this.joke,
+      this.id,
       this.category,
       this.type,
       this.flags,
       this.safe,
-      this.lang});
+      this.lang,
+      this.message});
 
   factory _$_JokeDto.fromJson(Map<String, dynamic> json) =>
       _$$_JokeDtoFromJson(json);
@@ -233,11 +233,9 @@ class _$_JokeDto implements _JokeDto {
   @override
   final bool error;
   @override
-  final String setup;
+  final String? joke;
   @override
-  final String delivery;
-  @override
-  final int id;
+  final int? id;
   @override
   final String? category;
   @override
@@ -248,10 +246,12 @@ class _$_JokeDto implements _JokeDto {
   final bool? safe;
   @override
   final String? lang;
+  @override
+  final String? message;
 
   @override
   String toString() {
-    return 'JokeDto(error: $error, setup: $setup, delivery: $delivery, id: $id, category: $category, type: $type, flags: $flags, safe: $safe, lang: $lang)';
+    return 'JokeDto(error: $error, joke: $joke, id: $id, category: $category, type: $type, flags: $flags, safe: $safe, lang: $lang, message: $message)';
   }
 
   @override
@@ -260,22 +260,21 @@ class _$_JokeDto implements _JokeDto {
         (other.runtimeType == runtimeType &&
             other is _$_JokeDto &&
             (identical(other.error, error) || other.error == error) &&
-            (identical(other.setup, setup) || other.setup == setup) &&
-            (identical(other.delivery, delivery) ||
-                other.delivery == delivery) &&
+            (identical(other.joke, joke) || other.joke == joke) &&
             (identical(other.id, id) || other.id == id) &&
             (identical(other.category, category) ||
                 other.category == category) &&
             (identical(other.type, type) || other.type == type) &&
             (identical(other.flags, flags) || other.flags == flags) &&
             (identical(other.safe, safe) || other.safe == safe) &&
-            (identical(other.lang, lang) || other.lang == lang));
+            (identical(other.lang, lang) || other.lang == lang) &&
+            (identical(other.message, message) || other.message == message));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode => Object.hash(runtimeType, error, setup, delivery, id,
-      category, type, flags, safe, lang);
+  int get hashCode => Object.hash(
+      runtimeType, error, joke, id, category, type, flags, safe, lang, message);
 
   @JsonKey(ignore: true)
   @override
@@ -294,25 +293,23 @@ class _$_JokeDto implements _JokeDto {
 abstract class _JokeDto implements JokeDto {
   const factory _JokeDto(
       {required final bool error,
-      required final String setup,
-      required final String delivery,
-      required final int id,
+      final String? joke,
+      final int? id,
       final String? category,
       final String? type,
       final Flags? flags,
       final bool? safe,
-      final String? lang}) = _$_JokeDto;
+      final String? lang,
+      final String? message}) = _$_JokeDto;
 
   factory _JokeDto.fromJson(Map<String, dynamic> json) = _$_JokeDto.fromJson;
 
   @override
   bool get error;
   @override
-  String get setup;
+  String? get joke;
   @override
-  String get delivery;
-  @override
-  int get id;
+  int? get id;
   @override
   String? get category;
   @override
@@ -323,6 +320,8 @@ abstract class _JokeDto implements JokeDto {
   bool? get safe;
   @override
   String? get lang;
+  @override
+  String? get message;
   @override
   @JsonKey(ignore: true)
   _$$_JokeDtoCopyWith<_$_JokeDto> get copyWith =>

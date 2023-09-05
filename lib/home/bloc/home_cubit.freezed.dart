@@ -20,6 +20,7 @@ mixin _$HomeState {
   List<String>? get jokeCategory => throw _privateConstructorUsedError;
   String? get searchInput => throw _privateConstructorUsedError;
   List<String> get jokeBlackList => throw _privateConstructorUsedError;
+  JokeDto? get jokeDto => throw _privateConstructorUsedError;
   String? get error => throw _privateConstructorUsedError;
 
   @JsonKey(ignore: true)
@@ -37,7 +38,10 @@ abstract class $HomeStateCopyWith<$Res> {
       List<String>? jokeCategory,
       String? searchInput,
       List<String> jokeBlackList,
+      JokeDto? jokeDto,
       String? error});
+
+  $JokeDtoCopyWith<$Res>? get jokeDto;
 }
 
 /// @nodoc
@@ -57,6 +61,7 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
     Object? jokeCategory = freezed,
     Object? searchInput = freezed,
     Object? jokeBlackList = null,
+    Object? jokeDto = freezed,
     Object? error = freezed,
   }) {
     return _then(_value.copyWith(
@@ -76,11 +81,27 @@ class _$HomeStateCopyWithImpl<$Res, $Val extends HomeState>
           ? _value.jokeBlackList
           : jokeBlackList // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      jokeDto: freezed == jokeDto
+          ? _value.jokeDto
+          : jokeDto // ignore: cast_nullable_to_non_nullable
+              as JokeDto?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
               as String?,
     ) as $Val);
+  }
+
+  @override
+  @pragma('vm:prefer-inline')
+  $JokeDtoCopyWith<$Res>? get jokeDto {
+    if (_value.jokeDto == null) {
+      return null;
+    }
+
+    return $JokeDtoCopyWith<$Res>(_value.jokeDto!, (value) {
+      return _then(_value.copyWith(jokeDto: value) as $Val);
+    });
   }
 }
 
@@ -96,7 +117,11 @@ abstract class _$$_HomeStateCopyWith<$Res> implements $HomeStateCopyWith<$Res> {
       List<String>? jokeCategory,
       String? searchInput,
       List<String> jokeBlackList,
+      JokeDto? jokeDto,
       String? error});
+
+  @override
+  $JokeDtoCopyWith<$Res>? get jokeDto;
 }
 
 /// @nodoc
@@ -114,6 +139,7 @@ class __$$_HomeStateCopyWithImpl<$Res>
     Object? jokeCategory = freezed,
     Object? searchInput = freezed,
     Object? jokeBlackList = null,
+    Object? jokeDto = freezed,
     Object? error = freezed,
   }) {
     return _then(_$_HomeState(
@@ -133,6 +159,10 @@ class __$$_HomeStateCopyWithImpl<$Res>
           ? _value._jokeBlackList
           : jokeBlackList // ignore: cast_nullable_to_non_nullable
               as List<String>,
+      jokeDto: freezed == jokeDto
+          ? _value.jokeDto
+          : jokeDto // ignore: cast_nullable_to_non_nullable
+              as JokeDto?,
       error: freezed == error
           ? _value.error
           : error // ignore: cast_nullable_to_non_nullable
@@ -149,6 +179,7 @@ class _$_HomeState implements _HomeState {
       final List<String>? jokeCategory,
       this.searchInput,
       final List<String> jokeBlackList = const [],
+      this.jokeDto,
       this.error})
       : _jokeCategory = jokeCategory,
         _jokeBlackList = jokeBlackList;
@@ -178,11 +209,13 @@ class _$_HomeState implements _HomeState {
   }
 
   @override
+  final JokeDto? jokeDto;
+  @override
   final String? error;
 
   @override
   String toString() {
-    return 'HomeState(status: $status, jokeCategory: $jokeCategory, searchInput: $searchInput, jokeBlackList: $jokeBlackList, error: $error)';
+    return 'HomeState(status: $status, jokeCategory: $jokeCategory, searchInput: $searchInput, jokeBlackList: $jokeBlackList, jokeDto: $jokeDto, error: $error)';
   }
 
   @override
@@ -197,6 +230,7 @@ class _$_HomeState implements _HomeState {
                 other.searchInput == searchInput) &&
             const DeepCollectionEquality()
                 .equals(other._jokeBlackList, _jokeBlackList) &&
+            (identical(other.jokeDto, jokeDto) || other.jokeDto == jokeDto) &&
             (identical(other.error, error) || other.error == error));
   }
 
@@ -207,6 +241,7 @@ class _$_HomeState implements _HomeState {
       const DeepCollectionEquality().hash(_jokeCategory),
       searchInput,
       const DeepCollectionEquality().hash(_jokeBlackList),
+      jokeDto,
       error);
 
   @JsonKey(ignore: true)
@@ -222,6 +257,7 @@ abstract class _HomeState implements HomeState {
       final List<String>? jokeCategory,
       final String? searchInput,
       final List<String> jokeBlackList,
+      final JokeDto? jokeDto,
       final String? error}) = _$_HomeState;
 
   @override
@@ -232,6 +268,8 @@ abstract class _HomeState implements HomeState {
   String? get searchInput;
   @override
   List<String> get jokeBlackList;
+  @override
+  JokeDto? get jokeDto;
   @override
   String? get error;
   @override

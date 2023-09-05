@@ -1,5 +1,6 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
+import 'package:joke_api/home/data/dto/joke_dto.dart';
 import 'package:joke_api/home/data/repository/home_repository.dart';
 
 part 'home_state.dart';
@@ -57,10 +58,24 @@ class HomeCubit extends Cubit<HomeState> {
   }
 
   void requestJoke() async {
+    emit(state.copyWith(status: HomeStatus.loading));
     final response = await _repository.getJoke(
       jokeCategory: state.jokeCategory,
       jokeBlackList: state.jokeBlackList,
       searchInput: state.searchInput,
+    );
+    response.fold(
+      (left) {
+        emit(
+          state.copyWith(
+            status: HomeStatus.error,
+            error: 'Something went wrong',
+          ),
+        );
+      },
+      (jokeDto) {
+        emit(state.copyWith(status: HomeStatus.success, jokeDto: jokeDto));
+      },
     );
   }
 }
