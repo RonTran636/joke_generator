@@ -22,7 +22,7 @@ class HomeCubit extends Cubit<HomeState> {
   ];
 
   final jokeCategory = [
-    "programing",
+    "programming",
     "misc",
     "dark",
     "pun",
@@ -57,7 +57,7 @@ class HomeCubit extends Cubit<HomeState> {
     emit(state.copyWith(jokeCategory: mJokeCategory));
   }
 
-  void requestJoke() async {
+  Future<void> requestJoke() async {
     emit(state.copyWith(status: HomeStatus.loading));
     final response = await _repository.getJoke(
       jokeCategory: state.jokeCategory,

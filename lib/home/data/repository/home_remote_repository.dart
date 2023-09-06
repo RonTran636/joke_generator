@@ -39,7 +39,6 @@ class HomeRemoteRepository implements HomeRepository {
     );
 
    if (response.statusCode == 200){
-     print('data: ${response.data}');
      return Right(JokeDto.fromJson(response.data));
    }
     return const Left(ApiFailure.connectivityError());

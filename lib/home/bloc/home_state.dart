@@ -12,6 +12,8 @@ class HomeState with _$HomeState {
   }) = _HomeState;
 
   factory HomeState.initial() => const HomeState();
+
+  factory HomeState.success() => const HomeState(status: HomeStatus.success);
 }
 
 enum HomeStatus {

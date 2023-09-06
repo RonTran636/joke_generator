@@ -149,6 +149,7 @@ class HomePage extends StatelessWidget {
                   SizedBox(
                     width: MediaQuery.of(context).size.width,
                     child: ElevatedButton(
+                      key: const Key('submitButton'),
                       onPressed: homeCubit.requestJoke,
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Color(0xffA667F3),
@@ -201,7 +202,7 @@ class HomePage extends StatelessWidget {
                               ),
                               const SizedBox(height: 8),
                               Text(
-                                state.jokeDto!.joke!,
+                                state.jokeDto?.joke! ?? '',
                                 style: TextStyle(
                                   fontSize: 16,
                                   color: Colors.white,
